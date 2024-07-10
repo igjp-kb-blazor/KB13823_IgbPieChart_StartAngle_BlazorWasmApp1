@@ -1,0 +1,23 @@
+﻿@inject EnergyGlobalDemandDataService EnergyGlobalDemandDS
+
+<div style="text-align: center;">
+    <IgbPieChart Name="chart"
+                 Height="450px"
+                 Width="450px"
+                 LegendLabelMemberPath="Category"
+                 LabelMemberPath="Summary"
+                 LabelsPosition="LabelsPosition.BestFit"
+                 ValueMemberPath="Value"
+                 DataSource="EnergyGlobalDemandItems"
+                 StartAngle="-90">
+    </IgbPieChart>
+</div>
+
+@code {
+    private List<EnergyGlobalDemandItem>? EnergyGlobalDemandItems = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        EnergyGlobalDemandItems = await EnergyGlobalDemandDS.GetEnergyGlobalDemandItemsAsync();
+    }
+}
